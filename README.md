@@ -3,8 +3,8 @@ If a proxmox host is configured with a Proxmox Backup Server, this script can re
 Useful to run VMs in hot-standby in another datacenter where running Proxmox hosts in a shared storage cluster is not possible 
 due to latency.
 
-```# Usage
-root@pve-2:~# ./proxmox-restore.sh 100
+# Usage
+```root@pve-2:~# ./proxmox-restore.sh 100
 new volume ID is 'local-zfs:vm-100-disk-0'
 restore proxmox backup image: /usr/bin/pbs-restore --repository root@pam@10.0.2.82:BackupDatastore vm/100/2023-04-27T06:51:58Z drive-scsi0.img.fidx /dev/zvol/rpool/data/vm-100-disk-0 --verbose --format raw --skip-zero
 connecting to repository 'root@pam@10.0.2.82:BackupDatastore'
