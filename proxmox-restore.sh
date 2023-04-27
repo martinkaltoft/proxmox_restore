@@ -15,7 +15,7 @@ fi
 
 # Function to shut down the VM
 shutdown_vm() {
-    MAX_RETRIES=0
+    MAX_RETRIES=3
     retries=0
 
     # Attempt to gracefully shutdown the VM
