@@ -4,7 +4,8 @@ Useful to run VMs in hot-standby in another datacenter where running Proxmox hos
 due to latency.
 
 # Usage
-```root@pve-2:~# ./proxmox-restore.sh 100
+```
+root@pve-2:~# ./proxmox-restore.sh 100
 new volume ID is 'local-zfs:vm-100-disk-0'
 restore proxmox backup image: /usr/bin/pbs-restore --repository root@pam@10.0.2.82:BackupDatastore vm/100/2023-04-27T06:51:58Z drive-scsi0.img.fidx /dev/zvol/rpool/data/vm-100-disk-0 --verbose --format raw --skip-zero
 connecting to repository 'root@pam@10.0.2.82:BackupDatastore'
@@ -15,5 +16,6 @@ progress 1% (read 130023424 bytes, zeroes = 45% (58720256 bytes), duration 0 sec
 ...
 progress 100% (read 12884901888 bytes, zeroes = 40% (5234491392 bytes), duration 94 sec)
 restore image complete (bytes=12884901888, duration=94.68s, speed=129.78MB/s)
-rescan volumes...```
+rescan volumes...
+```
 
