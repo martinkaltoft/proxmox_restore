@@ -3,6 +3,8 @@ If a proxmox host is configured with a Proxmox Backup Server, this script can re
 Useful to run VMs in hot-standby in another datacenter where running Proxmox hosts in a shared storage cluster is not possible 
 due to latency.
 
+Tested on Proxmox Virtual Environment 7.4-3 and Proxmox Backup Server 2.4-1
+
 # Usage
 ```
 root@pve-2:~# ./proxmox-restore.sh 100
