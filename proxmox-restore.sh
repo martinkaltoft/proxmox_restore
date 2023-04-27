@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Dette script laver en restore af seneste version af VM 100 på source og
-# og restorer til denne maskine som $VMID
+# This script shuts down the VM with $VMID, 
+# destroys the VM and restores from the backup 
+# repository $BACKUP_STORAGE
 
 # Set the variables for the backup storage and VMID
 BACKUP_STORAGE="PBS"
@@ -30,7 +31,6 @@ shutdown_vm() {
 
         if ! qm status "$VMID" | grep -q "status: running"; then
             echo "VM $VMID has stopped."
-            # Perform your desired action here
             return 0
         fi
 
@@ -39,7 +39,7 @@ shutdown_vm() {
     done
 
     echo "Failed to gracefully shutdown VM $VMID after $MAX_RETRIES attempts."
-    # Perform any fallback action here
+    # If the VM cannot be shut down gracefully after $MAX_RETRIES attempts, kill it
     qm stop "$VMID"
     return 1
 }
