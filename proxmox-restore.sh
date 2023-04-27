@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Dette script er skrevet af ChatGPT3.5
 # Dette script laver en restore af seneste version af VM 100 på source og
 # og restorer til denne maskine som $VMID
 
