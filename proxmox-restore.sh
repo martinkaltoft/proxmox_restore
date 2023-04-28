@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# This script shuts down the VM with $VMID, 
-# destroys the VM and restores from the backup 
+# This script shuts down the VM with $VMID,
+# destroys the VM and restores from the backup
 # repository $BACKUP_STORAGE
 
 # Set the variables for the backup storage and VMID
@@ -71,6 +71,35 @@ start_vm() {
     echo "Starting VM $VMID..."
 }
 
+set_cpu_cores() {
+    qm set "$VMID" --cores 2
+    echo "Setting no. of CPU cores on VM $VMID to 2..."
+}
 
+check_active_dc() {
+    local domain="dc.bbhotels.dk"
+    local txt_value="JDM"
+
+    local txt_records
+    txt_records=$(dig +short TXT "$domain")
+
+
+    if echo "$txt_records" | grep -q '"Hetzner"'; then
+        echo "Hetzner is the active datacenter - stopping replication..."
+        exit 0
+    elif echo "$txt_records" | grep -q '"JDM"'; then
+        echo "JDM is the active datacenter, replicating VMs..."
+    fi
+}
+
+# Check hvilket datacenter er aktivt
+check_active_dc
+
+# Restore VM
 restore_vm "$VMID"
+
+# Ret i cores saa det passer til denne host
+set_cpu_cores "$VMID"
+
+# Start VM
 start_vm "$VMID"
